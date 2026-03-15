@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Mobile Detailing · Brillo excepcional</title>
+    <!-- Font Awesome 6 (gratuito) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== CSS (ESTILOS) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: #0b0f15;
+            color: #eef2f5;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        /* BOTÓN CTA FLOTANTE - AMARILLO BRILLANTE SOBRE FONDO OSCURO */
+        .cta-float {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            background: #f2c94c;
+            color: #0b0f15;
+            font-weight: 800;
+            font-size: 1.3rem;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            box-shadow: 0 15px 30px -8px rgba(242, 201, 76, 0.4);
+            border: none;
+            z-index: 999;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid #fad25c;
+            letter-spacing: 1px;
+            text-decoration: none; /* Quita subrayado del enlace */
+        }
+        .cta-float i {
+            font-size: 1.8rem;
+            color: #121212;
+        }
+        .cta-float:hover {
+            background: #ffd966;
+            transform: scale(1.05);
+            box-shadow: 0 20px 35px -5px #f2c94c;
+        }
+        /* HEADER */
+        header {
+            background: #0f141c;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #2a313c;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            backdrop-filter: blur(5px);
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #f2c94c, #f5b342);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo span {
+            font-size: 1rem;
+            background: none;
+            -webkit-text-fill-color: #aaa;
+            display: block;
+            font-weight: 300;
+        }
+        /* HERO con slider antes/después */
+        .hero-before-after {
+            background: #151e2a;
+            border-radius: 40px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 20px 30px -5px #00000080;
+        }
+        .ba-text {
+            flex: 1 1 260px;
+        }
+        .ba-text h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            border-left: 8px solid #f2c94c;
+            padding-left: 1.5rem;
+        }
+        .ba-slider {
+            flex: 2 1 400px;
+            background: #1e2a37;
+            border-radius: 28px;
+            padding: 1.2rem;
+        }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            user-select: none;
+        }
+        .ba-img-wrapper {
+            display: flex;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+        .ba-slide {
+            min-width: 100%;
+        }
+        .ba-slide img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            border-radius: 20px;
+        }
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .slider-nav button {
+            background: #2e3b4b;
+            border: none;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 40px;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .slider-nav button:hover {
+            background: #f2c94c;
+            color: #0b0f15;
+        }
+        /* video proceso */
+        .video-proceso {
+            background: #0f141c;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .video-wrapper video {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 40px;
+            border: 3px solid #f2c94c;
+            box-shadow: 0 10px 20px #00000060;
+        }
+        /* categorías autos */
+        .categorias {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+        .cat-card {
+            background: #19222e;
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            font-size: 1.4rem;
+            border: 1px solid #3d4d5e;
+            transition: 0.2s;
+            cursor: default;
+        }
+        .cat-card i {
+            color: #f2c94c;
+            margin-right: 8px;
+        }
+        .cat-card:hover {
+            background: #253544;
+            border-color: #f2c94c;
+        }
+        /* paquetes + pestañas tamaño */
+        .paquetes-section {
+            background: #111821;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+        .tabs-size {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1.5rem 0 2rem;
+            flex-wrap: wrap;
+        }
+        .tab-size {
+            background: #1e2a36;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid #3a4a5a;
+        }
+        .tab-size.active {
+            background: #f2c94c;
+            color: #121212;
+            border-color: #f2c94c;
+        }
+        .pack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .pack-card {
+            background: #1b2633;
+            border-radius: 30px;
+            padding: 2rem 1.5rem;
+            border-bottom: 4px solid transparent;
+            transition: 0.2s;
+        }
+        .pack-card.basico { border-color: #a5d8ff; }
+        .pack-card.interior { border-color: #ffb3b3; }
+        .pack-card.profundo { border-color: #c0b9ff; }
+        .pack-card.ceramica { border-color: #f2c94c; }
+        .pack-card h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .pack-card .price { font-size: 2rem; font-weight: 800; color: #f2c94c; }
+        /* prueba social carrusel */
+        .carrusel-testimonios {
+            background: #151e2a;
+            border-radius: 40px;
+            padding: 2.5rem 1rem;
+            margin: 4rem 0;
+        }
+        .carrusel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding: 1rem 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: #f2c94c #2e3b4b;
+        }
+        .testimonio-item {
+            min-width: 300px;
+            background: #1f2c3a;
+            border-radius: 30px;
+            padding: 1.8rem;
+            scroll-snap-align: start;
+            border: 1px solid #3d5063;
+        }
+        .testimonio-item i { color: #f2c94c; font-size: 2rem; }
+        .stars { color: #f2c94c; margin: 0.5rem 0; }
+        /* por qué elegirnos */
+        .why-us {
+            background: linear-gradient(145deg, #0d131d, #131c28);
+            border-radius: 40px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .feature {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+        .feature i { font-size: 3rem; color: #f2c94c; }
+        /* formulario cotizador con upload */
+        .quote-form {
+            background: #0f1822;
+            border-radius: 40px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+        }
+        .form-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .form-left {
+            flex: 2 1 300px;
+        }
+        .form-right {
+            flex: 1 1 250px;
+            background: #1a2634;
+            border-radius: 30px;
+            padding: 1.5rem;
+        }
+        .upload-area {
+            border: 2px dashed #f2c94c;
+            border-radius: 30px;
+            padding: 1.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.7rem 0;
+            background: #1d2a39;
+            border: 1px solid #384b60;
+            border-radius: 40px;
+            color: white;
+        }
+        .btn {
+            background: #f2c94c;
+            color: #121212;
+            font-weight: bold;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        /* blog */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .blog-card {
+            background: #18212b;
+            border-radius: 30px;
+            padding: 2rem;
+        }
+        /* suscripciones */
+        .suscripciones {
+            background: #10161f;
+            border-radius: 40px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+        }
+        .plan-sus {
+            display: inline-block;
+            background: #1d2b39;
+            border-radius: 50px;
+            padding: 1.8rem 3rem;
+            margin: 1rem;
+        }
+        .plan-sus .price {
+            font-size: 2.5rem;
+            color: #f2c94c;
+        }
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid #2a3645;
+        }
+    </style>
+</head>
+<body>
+    <!-- CTA FLOTANTE MODIFICADO: AHORA ABRE WHATSAPP (REEMPLAZA EL NÚMERO) -->
+    <a href="https://wa.me/521234567890?text=Hola%2C%20quiero%20reservar%20una%20cita%20de%20detailing%20profesional" 
+       class="cta-float" 
+       target="_blank">
+        <i class="fas fa-calendar-check"></i> RESERVAR AHORA
+    </a>
+
+    <header>
+        <div class="container header-flex">
+            <div class="logo">ELITE MOBILE DETAILING <span>brillo que perdura</span></div>
+            <nav><i class="fas fa-bars fa-2x" style="color:#f2c94c;"></i></nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- SLIDER antes / después -->
+        <section class="hero-before-after">
+            <div class="ba-text">
+                <h2>Transformación extrema<br> <span style="font-size: 1.5rem; color:#ccc;">arrastra / mira</span></h2>
+                <p style="margin-top: 1rem;">Nuestros trabajos hablan solos. Desliza para ver el cambio.</p>
+            </div>
+            <div class="ba-slider">
+                <div class="slider-container" id="sliderBeforeAfter">
+                    <div class="ba-img-wrapper" id="baWrapper">
+                        <div class="ba-slide"><img src="https://placehold.co/800x400/2a3a4a/ffffff?text=ANTES:+pintura+opaca" alt="antes"></div>
+                        <div class="ba-slide"><img src="https://placehold.co/800x400/3d5a73/ffffff?text=DESPUES:+brillo+espejo" alt="despues"></div>
+                        <div class="ba-slide"><img src="https://placehold.co/800x400/2a3a4a/ffffff?text=ANTES:+interior+sucio" alt="antes2"></div>
+                        <div class="ba-slide"><img src="https://placehold.co/800x400/4a6b8a/ffffff?text=DESPUES:+like+new" alt="despues2"></div>
+                    </div>
+                    <div class="slider-nav">
+                        <button id="prevBA"><i class="fas fa-chevron-left"></i></button>
+                        <button id="nextBA"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO PROCESO (cómo lavamos un auto) -->
+        <section class="video-proceso">
+            <h2 style="margin-bottom: 1.5rem;">🧼 Así trabajamos · video corto</h2>
+            <div class="video-wrapper">
+                <video controls poster="https://placehold.co/700x400/1f2c3a/white?text=PROCESO+DETAILING">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+                <p style="margin-top: 1rem;">Lavado en profundidad · limpieza de tapicería</p>
+            </div>
+        </section>
+
+        <!-- CATEGORÍAS (exóticos, clásicos, SUVs) -->
+        <div class="categorias">
+            <div class="cat-card"><i class="fas fa-rocket"></i> EXÓTICOS</div>
+            <div class="cat-card"><i class="fas fa-car-side"></i> CLÁSICOS</div>
+            <div class="cat-card"><i class="fas fa-truck"></i> SUV'S</div>
+        </div>
+
+        <!-- PAQUETES + PESTAÑAS TAMAÑO VEHÍCULO -->
+        <section class="paquetes-section" id="paquetes">
+            <h2>💼 Paquetes especializados · elige talla</h2>
+            <div class="tabs-size" id="tabSizeContainer">
+                <span class="tab-size active" data-size="pequeño">🚗 Pequeño (sedán)</span>
+                <span class="tab-size" data-size="mediano">🚙 Mediano (SUV)</span>
+                <span class="tab-size" data-size="grande">🛻 Grande / camioneta</span>
+            </div>
+            <div id="packContent">
+                <!-- JS llena aquí -->
+            </div>
+        </section>
+
+        <!-- PRUEBA SOCIAL (carrusel reseñas google) -->
+        <section class="carrusel-testimonios">
+            <h2 style="text-align: center;">⭐ Clientes felices · Google My Business</h2>
+            <div class="carrusel-track" id="carruselReviews">
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"Mejor servicio de detailing, mi Audi parece nuevo" - Laura G.</p></div>
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"Muy profesionales, productos biodegradables, volveré" - Carlos R.</p></div>
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"Cita a domicilio puntual, dejaron mi RAM impecable" - Sofia M.</p></div>
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"El recubrimiento cerámico duró mucho, recomendados" - Javier T.</p></div>
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"Confianza inmediata, explican todo, 100% confiable" - Andrea L.</p></div>
+            </div>
+        </section>
+
+        <!-- POR QUÉ ELEGIRNOS (biodegradable, certificaciones, mobile) -->
+        <section class="why-us">
+            <h2 style="text-align: center;">🌿 ¿Por qué elegirnos?</h2>
+            <div class="features-grid">
+                <div class="feature"><i class="fas fa-leaf"></i><h3>Productos biodegradables</h3><p>100% ecológicos, sin daño al medio ambiente</p></div>
+                <div class="feature"><i class="fas fa-certificate"></i><h3>Certificación cerámica</h3><p>Expertos en recubrimientos de alta gama</p></div>
+                <div class="feature"><i class="fas fa-truck"></i><h3>Mobile detailing</h3><p>Vamos a tu domicilio u oficina, sin estrés</p></div>
+            </div>
+        </section>
+
+        <!-- FORMULARIO COTIZACIÓN INTELIGENTE + SUBIR FOTOS -->
+        <section class="quote-form">
+            <h2>📋 Cotización inteligente</h2>
+            <p>Sube fotos de áreas problemáticas para un presupuesto exacto.</p>
+            <div class="form-grid">
+                <div class="form-left">
+                    <input type="text" placeholder="Nombre completo">
+                    <input type="email" placeholder="Email">
+                    <select><option>Selecciona tamaño del vehículo</option><option>Sedán</option><option>SUV</option><option>Pickup</option></select>
+                </div>
+                <div class="form-right">
+                    <div class="upload-area">
+                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                        <p>Haz clic o arrastra fotos (manchas, rayones)</p>
+                        <input type="file" multiple accept="image/*" style="border: none; background: none;">
+                    </div>
+                </div>
+            </div>
+            <button class="btn" style="margin-top: 2rem;">Obtener presupuesto gratuito</button>
+        </section>
+
+        <!-- BLOG DE CONSEJOS (cómo mantener brillo) -->
+        <section style="margin: 4rem 0;">
+            <h2>📝 Blog · Brillo permanente</h2>
+            <div class="blog-posts">
+                <div class="blog-card"><i class="fas fa-sun"></i><h3>Cómo mantener el brillo después del ceramic coating</h3><p>Lava con champú pH neutro y seca con microfibra. Evita lavados automáticos...</p></div>
+                <div class="blog-card"><i class="fas fa-tint"></i><h3>Cera vs sellante: ¿qué dura más?</h3><p>La cera da calidez, el sellante protege meses. Nosotros usamos ambos.</p></div>
+                <div class="blog-card"><i class="fas fa-car"></i><h3>Protege la pintura en invierno</h3><p>El barro y la sal dañan. Aplica capa de recubrimiento cada 3 meses.</p></div>
+            </div>
+        </section>
+
+        <!-- SUSCRIPCIONES MENSUALES (pagos recurrentes) -->
+        <section class="suscripciones">
+            <h2>🔁 Planes de mantenimiento · suscripción mensual</h2>
+            <div>
+                <div class="plan-sus"><span class="price">$49/mes</span> · Básico (lavado exterior + toque de cera)</div>
+                <div class="plan-sus"><span class="price">$89/mes</span> · Interior profundo + aspiración y nutrido</div>
+                <div class="plan-sus"><span class="price">$149/mes</span> · Cerámica de mantenimiento trimestral</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>📍 Servicio a domicilio ·  Av. Siempre Viva 123 ·  📞 +52 55 1234 5678</p>
+        <p style="margin-top: 1rem;">© 2025 Elite Mobile Detailing · Brillo responsable</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        (function(){
+            // ---------- SLIDER antes/después ----------
+            const wrapper = document.getElementById('baWrapper');
+            const prevBtn = document.getElementById('prevBA');
+            const nextBtn = document.getElementById('nextBA');
+            if (wrapper && prevBtn && nextBtn) {
+                let index = 0;
+                const slides = document.querySelectorAll('.ba-slide');
+                const totalSlides = slides.length;
+                const updateSlider = () => {
+                    wrapper.style.transform = `translateX(-${index * 100}%)`;
+                };
+                prevBtn.addEventListener('click', () => {
+                    index = (index - 1 + totalSlides) % totalSlides;
+                    updateSlider();
+                });
+                nextBtn.addEventListener('click', () => {
+                    index = (index + 1) % totalSlides;
+                    updateSlider();
+                });
+            }
+
+            // ---------- PAQUETES DINÁMICOS CON PESTAÑAS TAMAÑO ----------
+            const packData = {
+                pequeño: [
+                    { tipo: 'basico', nombre: 'Básico', precio: '$65', desc: 'Lavado exterior, llantas, cera líquida' },
+                    { tipo: 'interior', nombre: 'Interior', precio: '$99', desc: 'Aspirado, tapicería, plásticos y vidrios' },
+                    { tipo: 'profundo', nombre: 'Profundo', precio: '$159', desc: 'Limpieza tapicería + ozono + motor' },
+                    { tipo: 'ceramica', nombre: 'Protección cerámica', precio: '$299', desc: 'Capa cuarzo 2 años + brillo híbrido' }
+                ],
+                mediano: [
+                    { tipo: 'basico', nombre: 'Básico SUV', precio: '$79', desc: 'Lavado + llantas + cera' },
+                    { tipo: 'interior', nombre: 'Interior SUV', precio: '$129', desc: 'Aspirado y shampoo asientos' },
+                    { tipo: 'profundo', nombre: 'Profundo SUV', precio: '$189', desc: 'Limpieza integral + desinfección' },
+                    { tipo: 'ceramica', nombre: 'Cerámica SUV', precio: '$349', desc: 'Recubrimiento cerámico 3 años' }
+                ],
+                grande: [
+                    { tipo: 'basico', nombre: 'Básico Pickup', precio: '$99', desc: 'Lavado completo + llantas' },
+                    { tipo: 'interior', nombre: 'Interior Grande', precio: '$159', desc: 'Tapicería y alfombras profundas' },
+                    { tipo: 'profundo', nombre: 'Profundo Camioneta', precio: '$239', desc: 'Tratamiento tapiz + motor' },
+                    { tipo: 'ceramica', nombre: 'Cerámica Heavy', precio: '$429', desc: 'Protección cerámica 5 años' }
+                ]
+            };
+
+            const tabs = document.querySelectorAll('.tab-size');
+            const packContainer = document.getElementById('packContent');
+            function renderPacks(sizeKey) {
+                const packs = packData[sizeKey] || packData.pequeño;
+                let html = '<div class="pack-grid">';
+                packs.forEach(p => {
+                    html += `<div class="pack-card ${p.tipo}">
+                        <h3>${p.nombre}</h3>
+                        <p>${p.desc}</p>
+                        <div class="price">${p.precio}</div>
+                    </div>`;
+                });
+                html += '</div>';
+                if (packContainer) packContainer.innerHTML = html;
+            }
+            if (tabs.length && packContainer) {
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function(e) {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        const size = this.dataset.size; // 'pequeño', 'mediano', 'grande'
+                        renderPacks(size);
+                    });
+                });
+                // render inicial (pequeño)
+                renderPacks('pequeño');
+            }
+
+            // ---------- CARRUSEL DE RESEÑAS (desplazamiento automático simple) ----------
+            const track = document.getElementById('carruselReviews');
+            if (track) {
+                let scrollAmount = 0;
+                setInterval(() => {
+                    if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
+                        track.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        track.scrollBy({ left: 320, behavior: 'smooth' });
+                    }
+                }, 4000);
+            }
+
+            // ---------- SUBIDA DE ARCHIVOS (simulación visual) ----------
+            const uploadArea = document.querySelector('.upload-area input[type=file]');
+            if (uploadArea) {
+                uploadArea.addEventListener('change', function(e) {
+                    const areaDiv = this.closest('.upload-area');
+                    const p = areaDiv.querySelector('p');
+                    if (this.files.length > 0) {
+                        p.innerText = `${this.files.length} archivo(s) seleccionado(s) ✅`;
+                    } else {
+                        p.innerText = 'Haz clic o arrastra fotos (manchas, rayones)';
+                    }
+                });
+            }
+        })();
+    </script>
+    <!-- Pequeño fix para que el video tenga fuente alternativa si no carga -->
+    <script>
+        (function segundoPlano(){
+            // nada solo para asegurar que los botones CTA flotante se vean amarillos
+            console.log('Detailing web ready');
+        })();
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Mobile Detailing · Brillo excepcional</title>
+    <!-- Font Awesome 6 (gratuito) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== CSS (ESTILOS) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: #0b0f15;
+            color: #eef2f5;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        /* BOTÓN CTA FLOTANTE - AMARILLO BRILLANTE SOBRE FONDO OSCURO */
+        .cta-float {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            background: #f2c94c;
+            color: #0b0f15;
+            font-weight: 800;
+            font-size: 1.3rem;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            box-shadow: 0 15px 30px -8px rgba(242, 201, 76, 0.4);
+            border: none;
+            z-index: 999;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid #fad25c;
+            letter-spacing: 1px;
+            text-decoration: none; /* Quita subrayado del enlace */
+        }
+        .cta-float i {
+            font-size: 1.8rem;
+            color: #121212;
+        }
+        .cta-float:hover {
+            background: #ffd966;
+            transform: scale(1.05);
+            box-shadow: 0 20px 35px -5px #f2c94c;
+        }
+        /* HEADER */
+        header {
+            background: #0f141c;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #2a313c;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            backdrop-filter: blur(5px);
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #f2c94c, #f5b342);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo span {
+            font-size: 1rem;
+            background: none;
+            -webkit-text-fill-color: #aaa;
+            display: block;
+            font-weight: 300;
+        }
+        /* HERO con slider antes/después */
+        .hero-before-after {
+            background: #151e2a;
+            border-radius: 40px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 20px 30px -5px #00000080;
+        }
+        .ba-text {
+            flex: 1 1 260px;
+        }
+        .ba-text h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            border-left: 8px solid #f2c94c;
+            padding-left: 1.5rem;
+        }
+        .ba-slider {
+            flex: 2 1 400px;
+            background: #1e2a37;
+            border-radius: 28px;
+            padding: 1.2rem;
+        }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            user-select: none;
+        }
+        .ba-img-wrapper {
+            display: flex;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+        .ba-slide {
+            min-width: 100%;
+        }
+        .ba-slide img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            border-radius: 20px;
+        }
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .slider-nav button {
+            background: #2e3b4b;
+            border: none;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 40px;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .slider-nav button:hover {
+            background: #f2c94c;
+            color: #0b0f15;
+        }
+        /* video proceso */
+        .video-proceso {
+            background: #0f141c;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .video-wrapper video {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 40px;
+            border: 3px solid #f2c94c;
+            box-shadow: 0 10px 20px #00000060;
+        }
+        /* categorías autos */
+        .categorias {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+        .cat-card {
+            background: #19222e;
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            font-size: 1.4rem;
+            border: 1px solid #3d4d5e;
+            transition: 0.2s;
+            cursor: default;
+        }
+        .cat-card i {
+            color: #f2c94c;
+            margin-right: 8px;
+        }
+        .cat-card:hover {
+            background: #253544;
+            border-color: #f2c94c;
+        }
+        /* paquetes + pestañas tamaño */
+        .paquetes-section {
+            background: #111821;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+        .tabs-size {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1.5rem 0 2rem;
+            flex-wrap: wrap;
+        }
+        .tab-size {
+            background: #1e2a36;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid #3a4a5a;
+        }
+        .tab-size.active {
+            background: #f2c94c;
+            color: #121212;
+            border-color: #f2c94c;
+        }
+        .pack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .pack-card {
+            background: #1b2633;
+            border-radius: 30px;
+            padding: 2rem 1.5rem;
+            border-bottom: 4px solid transparent;
+            transition: 0.2s;
+        }
+        .pack-card.basico { border-color: #a5d8ff; }
+        .pack-card.interior { border-color: #ffb3b3; }
+        .pack-card.profundo { border-color: #c0b9ff; }
+        .pack-card.ceramica { border-color: #f2c94c; }
+        .pack-card h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .pack-card .price { font-size: 2rem; font-weight: 800; color: #f2c94c; }
+        /* prueba social carrusel */
+        .carrusel-testimonios {
+            background: #151e2a;
+            border-radius: 40px;
+            padding: 2.5rem 1rem;
+            margin: 4rem 0;
+        }
+        .carrusel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding: 1rem 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: #f2c94c #2e3b4b;
+        }
+        .testimonio-item {
+            min-width: 300px;
+            background: #1f2c3a;
+            border-radius: 30px;
+            padding: 1.8rem;
+            scroll-snap-align: start;
+            border: 1px solid #3d5063;
+        }
+        .testimonio-item i { color: #f2c94c; font-size: 2rem; }
+        .stars { color: #f2c94c; margin: 0.5rem 0; }
+        /* por qué elegirnos */
+        .why-us {
+            background: linear-gradient(145deg, #0d131d, #131c28);
+            border-radius: 40px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .feature {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+        .feature i { font-size: 3rem; color: #f2c94c; }
+        /* formulario cotizador con upload */
+        .quote-form {
+            background: #0f1822;
+            border-radius: 40px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+        }
+        .form-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .form-left {
+            flex: 2 1 300px;
+        }
+        .form-right {
+            flex: 1 1 250px;
+            background: #1a2634;
+            border-radius: 30px;
+            padding: 1.5rem;
+        }
+        .upload-area {
+            border: 2px dashed #f2c94c;
+            border-radius: 30px;
+            padding: 1.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.7rem 0;
+            background: #1d2a39;
+            border: 1px solid #384b60;
+            border-radius: 40px;
+            color: white;
+        }
+        .btn {
+            background: #f2c94c;
+            color: #121212;
+            font-weight: bold;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        /* blog */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .blog-card {
+            background: #18212b;
+            border-radius: 30px;
+            padding: 2rem;
+        }
+        /* suscripciones */
+        .suscripciones {
+            background: #10161f;
+            border-radius: 40px;
+            padding: 2.5rem;
+            margin: 4rem 0;
+        }
+        .plan-sus {
+            display: inline-block;
+            background: #1d2b39;
+            border-radius: 50px;
+            padding: 1.8rem 3rem;
+            margin: 1rem;
+        }
+        .plan-sus .price {
+            font-size: 2.5rem;
+            color: #f2c94c;
+        }
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid #2a3645;
+        }
+    </style>
+</head>
+<body>
+    <!-- CTA FLOTANTE MODIFICADO: AHORA ABRE WHATSAPP (REEMPLAZA EL NÚMERO) -->
+    <a href="https://wa.me/521234567890?text=Hola%2C%20quiero%20reservar%20una%20cita%20de%20detailing%20profesional" 
+       class="cta-float" 
+       target="_blank">
+        <i class="fas fa-calendar-check"></i> RESERVAR AHORA
+    </a>
+
+    <header>
+        <div class="container header-flex">
+            <div class="logo">ELITE MOBILE DETAILING <span>brillo que perdura</span></div>
+            <nav><i class="fas fa-bars fa-2x" style="color:#f2c94c;"></i></nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- SLIDER antes / después -->
+        <section class="hero-before-after">
+            <div class="ba-text">
+                <h2>Transformación extrema<br> <span style="font-size: 1.5rem; color:#ccc;">arrastra / mira</span></h2>
+                <p style="margin-top: 1rem;">Nuestros trabajos hablan solos. Desliza para ver el cambio.</p>
+            </div>
+            <div class="ba-slider">
+                <div class="slider-container" id="sliderBeforeAfter">
+                    <div class="ba-img-wrapper" id="baWrapper">
+                        <div class="ba-slide"><img src="images/antes.jpg" alt="antes"></div>
+                        <div class="ba-slide"><img src="images/despues.jpg" alt="despues"></div>
+                        <div class="ba-slide"><img src="images/antes.jpg" alt="antes2"></div>
+                        <div class="ba-slide"><img src="images/despues.jpg" alt="despues2"></div>
+                    </div>
+                    <div class="slider-nav">
+                        <button id="prevBA"><i class="fas fa-chevron-left"></i></button>
+                        <button id="nextBA"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO PROCESO (cómo lavamos un auto) -->
+        <section class="video-proceso">
+            <h2 style="margin-bottom: 1.5rem;">🧼 Así trabajamos · video corto</h2>
+            <div class="video-wrapper">
+                <video controls poster="https://placehold.co/700x400/1f2c3a/white?text=PROCESO+DETAILING">
+                    <source src="images/lavado.mp4" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+                <p style="margin-top: 1rem;">Lavado en profundidad · limpieza de tapicería</p>
+            </div>
+        </section>
+
+        <!-- CATEGORÍAS (exóticos, clásicos, SUVs) -->
+        <div class="categorias">
+            <div class="cat-card"><i class="fas fa-rocket"></i> EXÓTICOS</div>
+            <div class="cat-card"><i class="fas fa-car-side"></i> CLÁSICOS</div>
+            <div class="cat-card"><i class="fas fa-truck"></i> SUV'S</div>
+        </div>
+
+        <!-- PAQUETES + PESTAÑAS TAMAÑO VEHÍCULO -->
+        <section class="paquetes-section" id="paquetes">
+            <h2>💼 Paquetes especializados · elige talla</h2>
+            <div class="tabs-size" id="tabSizeContainer">
+                <span class="tab-size active" data-size="pequeño">🚗 Pequeño (sedán)</span>
+                <span class="tab-size" data-size="mediano">🚙 Mediano (SUV)</span>
+                <span class="tab-size" data-size="grande">🛻 Grande / camioneta</span>
+            </div>
+            <div id="packContent">
+                <!-- JS llena aquí -->
+            </div>
+        </section>
+
+        <!-- PRUEBA SOCIAL (carrusel reseñas google) -->
+        <section class="carrusel-testimonios">
+            <h2 style="text-align: center;">⭐ Clientes felices · Google My Business</h2>
+            <div class="carrusel-track" id="carruselReviews">
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"Mejor servicio de detailing, mi Audi parece nuevo" - Laura G.</p></div>
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"Muy profesionales, productos biodegradables, volveré" - Carlos R.</p></div>
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"Cita a domicilio puntual, dejaron mi RAM impecable" - Sofia M.</p></div>
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"El recubrimiento cerámico duró mucho, recomendados" - Javier T.</p></div>
+                <div class="testimonio-item"><i class="fas fa-star"></i><div class="stars">★★★★★</div><p>"Confianza inmediata, explican todo, 100% confiable" - Andrea L.</p></div>
+            </div>
+        </section>
+
+        <!-- POR QUÉ ELEGIRNOS (biodegradable, certificaciones, mobile) -->
+        <section class="why-us">
+            <h2 style="text-align: center;">🌿 ¿Por qué elegirnos?</h2>
+            <div class="features-grid">
+                <div class="feature"><i class="fas fa-leaf"></i><h3>Productos biodegradables</h3><p>100% ecológicos, sin daño al medio ambiente</p></div>
+                <div class="feature"><i class="fas fa-certificate"></i><h3>Certificación cerámica</h3><p>Expertos en recubrimientos de alta gama</p></div>
+                <div class="feature"><i class="fas fa-truck"></i><h3>Mobile detailing</h3><p>Vamos a tu domicilio u oficina, sin estrés</p></div>
+            </div>
+        </section>
+
+        <!-- FORMULARIO COTIZACIÓN INTELIGENTE + SUBIR FOTOS -->
+        <section class="quote-form">
+            <h2>📋 Cotización inteligente</h2>
+            <p>Sube fotos de áreas problemáticas para un presupuesto exacto.</p>
+            <div class="form-grid">
+                <div class="form-left">
+                    <input type="text" placeholder="Nombre completo">
+                    <input type="email" placeholder="Email">
+                    <select><option>Selecciona tamaño del vehículo</option><option>Sedán</option><option>SUV</option><option>Pickup</option></select>
+                </div>
+                <div class="form-right">
+                    <div class="upload-area">
+                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                        <p>Haz clic o arrastra fotos (manchas, rayones)</p>
+                        <input type="file" multiple accept="image/*" style="border: none; background: none;">
+                    </div>
+                </div>
+            </div>
+            <button class="btn" style="margin-top: 2rem;">Obtener presupuesto gratuito</button>
+        </section>
+
+        <!-- BLOG DE CONSEJOS (cómo mantener brillo) -->
+        <section style="margin: 4rem 0;">
+            <h2>📝 Blog · Brillo permanente</h2>
+            <div class="blog-posts">
+                <div class="blog-card"><i class="fas fa-sun"></i><h3>Cómo mantener el brillo después del ceramic coating</h3><p>Lava con champú pH neutro y seca con microfibra. Evita lavados automáticos...</p></div>
+                <div class="blog-card"><i class="fas fa-tint"></i><h3>Cera vs sellante: ¿qué dura más?</h3><p>La cera da calidez, el sellante protege meses. Nosotros usamos ambos.</p></div>
+                <div class="blog-card"><i class="fas fa-car"></i><h3>Protege la pintura en invierno</h3><p>El barro y la sal dañan. Aplica capa de recubrimiento cada 3 meses.</p></div>
+            </div>
+        </section>
+
+        <!-- SUSCRIPCIONES MENSUALES (pagos recurrentes) -->
+        <section class="suscripciones">
+            <h2>🔁 Planes de mantenimiento · suscripción mensual</h2>
+            <div>
+                <div class="plan-sus"><span class="price">$49/mes</span> · Básico (lavado exterior + toque de cera)</div>
+                <div class="plan-sus"><span class="price">$89/mes</span> · Interior profundo + aspiración y nutrido</div>
+                <div class="plan-sus"><span class="price">$149/mes</span> · Cerámica de mantenimiento trimestral</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>📍 Servicio a domicilio ·  Av. Siempre Viva 123 ·  📞 +52 712 228 8554</p>
+        <p style="margin-top: 1rem;">© 2025 Elite Mobile Detailing · Brillo responsable</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        (function(){
+            // ---------- SLIDER antes/después ----------
+            const wrapper = document.getElementById('baWrapper');
+            const prevBtn = document.getElementById('prevBA');
+            const nextBtn = document.getElementById('nextBA');
+            if (wrapper && prevBtn && nextBtn) {
+                let index = 0;
+                const slides = document.querySelectorAll('.ba-slide');
+                const totalSlides = slides.length;
+                const updateSlider = () => {
+                    wrapper.style.transform = `translateX(-${index * 100}%)`;
+                };
+                prevBtn.addEventListener('click', () => {
+                    index = (index - 1 + totalSlides) % totalSlides;
+                    updateSlider();
+                });
+                nextBtn.addEventListener('click', () => {
+                    index = (index + 1) % totalSlides;
+                    updateSlider();
+                });
+            }
+
+            // ---------- PAQUETES DINÁMICOS CON PESTAÑAS TAMAÑO ----------
+            const packData = {
+                pequeño: [
+                    { tipo: 'basico', nombre: 'Básico', precio: '$65', desc: 'Lavado exterior, llantas, cera líquida' },
+                    { tipo: 'interior', nombre: 'Interior', precio: '$99', desc: 'Aspirado, tapicería, plásticos y vidrios' },
+                    { tipo: 'profundo', nombre: 'Profundo', precio: '$159', desc: 'Limpieza tapicería + ozono + motor' },
+                    { tipo: 'ceramica', nombre: 'Protección cerámica', precio: '$299', desc: 'Capa cuarzo 2 años + brillo híbrido' }
+                ],
+                mediano: [
+                    { tipo: 'basico', nombre: 'Básico SUV', precio: '$79', desc: 'Lavado + llantas + cera' },
+                    { tipo: 'interior', nombre: 'Interior SUV', precio: '$129', desc: 'Aspirado y shampoo asientos' },
+                    { tipo: 'profundo', nombre: 'Profundo SUV', precio: '$189', desc: 'Limpieza integral + desinfección' },
+                    { tipo: 'ceramica', nombre: 'Cerámica SUV', precio: '$349', desc: 'Recubrimiento cerámico 3 años' }
+                ],
+                grande: [
+                    { tipo: 'basico', nombre: 'Básico Pickup', precio: '$99', desc: 'Lavado completo + llantas' },
+                    { tipo: 'interior', nombre: 'Interior Grande', precio: '$159', desc: 'Tapicería y alfombras profundas' },
+                    { tipo: 'profundo', nombre: 'Profundo Camioneta', precio: '$239', desc: 'Tratamiento tapiz + motor' },
+                    { tipo: 'ceramica', nombre: 'Cerámica Heavy', precio: '$429', desc: 'Protección cerámica 5 años' }
+                ]
+            };
+
+            const tabs = document.querySelectorAll('.tab-size');
+            const packContainer = document.getElementById('packContent');
+            function renderPacks(sizeKey) {
+                const packs = packData[sizeKey] || packData.pequeño;
+                let html = '<div class="pack-grid">';
+                packs.forEach(p => {
+                    html += `<div class="pack-card ${p.tipo}">
+                        <h3>${p.nombre}</h3>
+                        <p>${p.desc}</p>
+                        <div class="price">${p.precio}</div>
+                    </div>`;
+                });
+                html += '</div>';
+                if (packContainer) packContainer.innerHTML = html;
+            }
+            if (tabs.length && packContainer) {
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function(e) {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        const size = this.dataset.size; // 'pequeño', 'mediano', 'grande'
+                        renderPacks(size);
+                    });
+                });
+                // render inicial (pequeño)
+                renderPacks('pequeño');
+            }
+
+            // ---------- CARRUSEL DE RESEÑAS (desplazamiento automático simple) ----------
+            const track = document.getElementById('carruselReviews');
+            if (track) {
+                let scrollAmount = 0;
+                setInterval(() => {
+                    if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
+                        track.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        track.scrollBy({ left: 320, behavior: 'smooth' });
+                    }
+                }, 4000);
+            }
+
+            // ---------- SUBIDA DE ARCHIVOS (simulación visual) ----------
+            const uploadArea = document.querySelector('.upload-area input[type=file]');
+            if (uploadArea) {
+                uploadArea.addEventListener('change', function(e) {
+                    const areaDiv = this.closest('.upload-area');
+                    const p = areaDiv.querySelector('p');
+                    if (this.files.length > 0) {
+                        p.innerText = `${this.files.length} archivo(s) seleccionado(s) ✅`;
+                    } else {
+                        p.innerText = 'Haz clic o arrastra fotos (manchas, rayones)';
+                    }
+                });
+            }
+        })();
+    </script>
+    <!-- Pequeño fix para que el video tenga fuente alternativa si no carga -->
+    <script>
+        (function segundoPlano(){
+            // nada solo para asegurar que los botones CTA flotante se vean amarillos
+            console.log('Detailing web ready');
+        })();
+    </script>
+</body>
+</html>
